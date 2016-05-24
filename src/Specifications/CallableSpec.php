@@ -13,6 +13,20 @@ use voov\Spec\Contracts\SpecificationInterface;
 abstract class CallableSpec implements SpecificationInterface
 {
     /**
+     * @var SpecificationInterface
+     */
+    protected $rule;
+
+    /**
+     * CallableSpec constructor.
+     * @param SpecificationInterface $rule
+     */
+    public function __construct(SpecificationInterface $rule)
+    {
+        $this->rule = $rule;
+    }
+
+    /**
      * Needed for chaining
      * @param null $spec
      * @return boolean

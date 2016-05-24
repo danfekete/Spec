@@ -5,12 +5,14 @@
  * Written by Daniel Fekete
  */
 
-namespace voov\Spec\Specifications\Boolean;
+namespace voov\Spec;
+
 
 use voov\Spec\Specifications\CallableSpec;
 
-class NotSpec extends CallableSpec
+class Specification extends CallableSpec
 {
+
 
 
     /**
@@ -20,6 +22,16 @@ class NotSpec extends CallableSpec
      */
     public function isSatisfiedBy($spec)
     {
-        return call_user_func($this->rule, $spec) ? false : true;
+        return call_user_func($this->rule, $spec);
+    }
+
+    /**
+     * Run the specification
+     * @param $object
+     * @return bool
+     */
+    public function run($object)
+    {
+        return $this->isSatisfiedBy($object);
     }
 }
