@@ -1,6 +1,7 @@
 <?php
 use voov\Spec\SpecificationBuilder;
 use voov\Spec\Specifications\Boolean\AndSpec;
+use voov\Spec\Specifications\Boolean\NotSpec;
 use voov\Spec\Specifications\Boolean\OrSpec;
 
 /**
@@ -44,6 +45,15 @@ class BooleanChainTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($or->isSatisfiedBy(null));
         $or->add($this->trueMock);
         $this->assertTrue($or->isSatisfiedBy(null));
+    }
+
+    public function testNot()
+    {
+        $not = new NotSpec($this->trueMock);
+        $this->assertFalse($not->isSatisfiedBy(null));
+
+        $not = new NotSpec($this->falseMock);
+        $this->assertTrue($not->isSatisfiedBy(null));
     }
 
     public function testAndOrChain()
