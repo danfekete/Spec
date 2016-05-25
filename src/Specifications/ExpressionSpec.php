@@ -32,10 +32,10 @@ class ExpressionSpec extends CallableSpec
      * ExpressionSpec constructor.
      * @param $expression string
      */
-    public function __construct($expression)
+    public function __construct($expression, $names = [])
     {
         $this->parser = new ExpressionLanguage();
-        $this->expression = $this->parser->parse($expression, []);
+        $this->expression = $this->parser->parse($expression, $names);
         $this->expressionString = $expression;
     }
 
