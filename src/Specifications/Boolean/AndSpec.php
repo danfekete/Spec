@@ -18,11 +18,9 @@ class AndSpec extends BooleanChain
      */
     public function isSatisfiedBy($spec)
     {
-        dump($this->rules);
         foreach ($this->rules as $rule) {
             // if either rule (spec) returns false, we return false
             $ret = $rule($spec);
-
             if(!$ret) return false;
         }
 
