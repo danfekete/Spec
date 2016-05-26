@@ -6,7 +6,7 @@
  * daniel.fekete@voov.hu
  */
 
-namespace voov\Spec\Exceptions;
+namespace danfekete\Spec\Exceptions;
 
 
 class UnknownSpec extends \Exception

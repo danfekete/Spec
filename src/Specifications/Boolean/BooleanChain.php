@@ -5,24 +5,24 @@
  * Written by Daniel Fekete
  */
 
-namespace voov\Spec\Specifications\Boolean;
+namespace danfekete\Spec\Specifications\Boolean;
 
 
-use voov\Spec\Contracts\CodeGenerator;
-use voov\Spec\Contracts\SpecificationInterface;
-use voov\Spec\Specifications\CallableSpec;
+use danfekete\Spec\Contracts\CodeGenerator;
+use danfekete\Spec\Contracts\SpecificationInterface;
+use danfekete\Spec\Specifications\CallableSpec;
 
 abstract class BooleanChain implements CodeGenerator
 {
 
     /**
-     * @var \voov\Spec\Contracts\CodeGenerator[]
+     * @var \danfekete\Spec\Contracts\CodeGenerator[]
      */
     protected $rules;
 
     /**
      * BooleanChain constructor.
-     * @param \voov\Spec\Contracts\CodeGenerator[] ...$rules
+     * @param \danfekete\Spec\Contracts\CodeGenerator[] ...$rules
      */
     public function __construct(CodeGenerator ...$rules)
     {

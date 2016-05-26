@@ -5,7 +5,7 @@
  * Written by Daniel Fekete
  */
 
-namespace voov\Spec\Exceptions;
+namespace danfekete\Spec\Exceptions;
 
 
 class NotBooleanExpression extends \Exception

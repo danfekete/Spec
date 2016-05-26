@@ -1,9 +1,9 @@
 <?php
-use voov\Spec\SpecificationBuilder;
-use voov\Spec\Specifications\Boolean\AndSpec;
-use voov\Spec\Specifications\Boolean\NotSpec;
-use voov\Spec\Specifications\Boolean\OrSpec;
-use voov\Spec\Specifications\ExpressionSpec;
+use danfekete\Spec\SpecificationBuilder;
+use danfekete\Spec\Specifications\Boolean\AndSpec;
+use danfekete\Spec\Specifications\Boolean\NotSpec;
+use danfekete\Spec\Specifications\Boolean\OrSpec;
+use danfekete\Spec\Specifications\ExpressionSpec;
 
 /**
  * Copyright (c) 2016, VOOV LLC.
@@ -16,7 +16,7 @@ class BooleanChainTest extends PHPUnit_Framework_TestCase
     protected $generator;
 
     public function setUp() {
-        $this->generator = $this->getMockBuilder('\voov\Spec\Contracts\CodeGenerator')
+        $this->generator = $this->getMockBuilder('\danfekete\Spec\Contracts\CodeGenerator')
             ->disableOriginalConstructor()
             ->getMock();
 

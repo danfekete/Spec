@@ -6,10 +6,10 @@
  * daniel.fekete@voov.hu
  */
 
-namespace voov\Spec\Specifications\Boolean;
+namespace danfekete\Spec\Specifications\Boolean;
 
 
-use voov\Spec\Contracts\CodeGenerator;
+use danfekete\Spec\Contracts\CodeGenerator;
 
 abstract class BooleanOperatorGenerator extends BooleanChain
 {

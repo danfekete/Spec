@@ -5,7 +5,7 @@
  * Written by Daniel Fekete
  */
 
-namespace voov\Spec\Specifications\Boolean;
+namespace danfekete\Spec\Specifications\Boolean;
 
 
 class OrSpec extends BooleanOperatorGenerator

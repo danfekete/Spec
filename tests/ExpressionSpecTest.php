@@ -1,9 +1,9 @@
 <?php
-use voov\Spec\Specification;
-use voov\Spec\SpecificationBuilder;
-use voov\Spec\Specifications\Boolean\AndSpec;
-use voov\Spec\Specifications\Boolean\OrSpec;
-use voov\Spec\Specifications\ExpressionSpec;
+use danfekete\Spec\Specification;
+use danfekete\Spec\SpecificationBuilder;
+use danfekete\Spec\Specifications\Boolean\AndSpec;
+use danfekete\Spec\Specifications\Boolean\OrSpec;
+use danfekete\Spec\Specifications\ExpressionSpec;
 
 /**
  * Copyright (c) 2016, VOOV LLC.

@@ -6,10 +6,10 @@
  * daniel.fekete@voov.hu
  */
 
-namespace voov\Spec\Contracts;
+namespace danfekete\Spec\Contracts;
 
 
-use voov\Spec\Specification;
+use danfekete\Spec\Specification;
 
 interface BuilderInterface
 {

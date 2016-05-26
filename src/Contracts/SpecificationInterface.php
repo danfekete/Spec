@@ -5,7 +5,7 @@
  * Written by Daniel Fekete
  */
 
-namespace voov\Spec\Contracts;
+namespace danfekete\Spec\Contracts;
 
 
 interface SpecificationInterface

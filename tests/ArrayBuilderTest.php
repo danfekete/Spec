@@ -1,5 +1,5 @@
 <?php
-use voov\Spec\Builders\ArrayBuilder;
+use danfekete\Spec\Builders\ArrayBuilder;
 
 /**
  * Copyright (c) 2016, VOOV LLC.

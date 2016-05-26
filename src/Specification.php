@@ -5,14 +5,14 @@
  * Written by Daniel Fekete
  */
 
-namespace voov\Spec;
+namespace danfekete\Spec;
 
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
-use voov\Spec\Contracts\CodeGenerator;
-use voov\Spec\Contracts\SpecificationInterface;
-use voov\Spec\Exceptions\NotBooleanExpression;
-use voov\Spec\Specifications\CallableSpec;
+use danfekete\Spec\Contracts\CodeGenerator;
+use danfekete\Spec\Contracts\SpecificationInterface;
+use danfekete\Spec\Exceptions\NotBooleanExpression;
+use danfekete\Spec\Specifications\CallableSpec;
 
 class Specification implements SpecificationInterface
 {

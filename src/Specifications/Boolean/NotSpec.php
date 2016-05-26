@@ -5,10 +5,10 @@
  * Written by Daniel Fekete
  */
 
-namespace voov\Spec\Specifications\Boolean;
+namespace danfekete\Spec\Specifications\Boolean;
 
-use voov\Spec\Contracts\CodeGenerator;
-use voov\Spec\Specifications\CallableSpec;
+use danfekete\Spec\Contracts\CodeGenerator;
+use danfekete\Spec\Specifications\CallableSpec;
 
 class NotSpec implements CodeGenerator
 {

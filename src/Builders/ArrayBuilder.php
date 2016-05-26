@@ -6,16 +6,16 @@
  * daniel.fekete@voov.hu
  */
 
-namespace voov\Spec\Builders;
+namespace danfekete\Spec\Builders;
 
 
-use voov\Spec\Contracts\BuilderInterface;
-use voov\Spec\Exceptions\UnknownSpec;
-use voov\Spec\Specification;
-use voov\Spec\Specifications\Boolean\AndSpec;
-use voov\Spec\Specifications\Boolean\NotSpec;
-use voov\Spec\Specifications\Boolean\OrSpec;
-use voov\Spec\Specifications\ExpressionSpec;
+use danfekete\Spec\Contracts\BuilderInterface;
+use danfekete\Spec\Exceptions\UnknownSpec;
+use danfekete\Spec\Specification;
+use danfekete\Spec\Specifications\Boolean\AndSpec;
+use danfekete\Spec\Specifications\Boolean\NotSpec;
+use danfekete\Spec\Specifications\Boolean\OrSpec;
+use danfekete\Spec\Specifications\ExpressionSpec;
 
 class ArrayBuilder implements BuilderInterface
 {

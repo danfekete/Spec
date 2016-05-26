@@ -6,7 +6,7 @@
  * daniel.fekete@voov.hu
  */
 
-namespace voov\Spec\Contracts;
+namespace danfekete\Spec\Contracts;
 
 
 interface CodeGenerator

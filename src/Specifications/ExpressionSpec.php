@@ -5,12 +5,12 @@
  * Written by Daniel Fekete
  */
 
-namespace voov\Spec\Specifications;
+namespace danfekete\Spec\Specifications;
 
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
-use voov\Spec\Contracts\CodeGenerator;
-use voov\Spec\Exceptions\NotBooleanExpression;
+use danfekete\Spec\Contracts\CodeGenerator;
+use danfekete\Spec\Exceptions\NotBooleanExpression;
 
 class ExpressionSpec implements CodeGenerator
 {
