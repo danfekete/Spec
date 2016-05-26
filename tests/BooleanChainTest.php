@@ -3,6 +3,7 @@ use voov\Spec\SpecificationBuilder;
 use voov\Spec\Specifications\Boolean\AndSpec;
 use voov\Spec\Specifications\Boolean\NotSpec;
 use voov\Spec\Specifications\Boolean\OrSpec;
+use voov\Spec\Specifications\ExpressionSpec;
 
 /**
  * Copyright (c) 2016, VOOV LLC.
@@ -38,6 +39,8 @@ class BooleanChainTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($or->generate(), "(1 || 1 || 1)");
     }
 
+
+
     public function testNot()
     {
         $not = new NotSpec($this->generator);
@@ -55,5 +58,16 @@ class BooleanChainTest extends PHPUnit_Framework_TestCase
             $this->generator
         );
         $this->assertEquals($chain->generate(), "((1 || 1) && (!1) && 1)");
+    }
+
+    public function testAddMany()
+    {
+        $chain = new AndSpec();
+        $chain->addMany([
+            new ExpressionSpec('1 == 1'),
+            new ExpressionSpec('1 == 1'),
+        ]);
+
+        $this->assertEquals($chain->generate(), "(1 == 1 && 1 == 1)");
     }
 }
