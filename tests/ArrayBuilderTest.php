@@ -12,7 +12,7 @@ class ArrayBuilderTest extends PHPUnit_Framework_TestCase
 
     public function testArrayBuilder()
     {
-        $ret = new ArrayBuilder();
+        /*$ret = new ArrayBuilder();
         $ret->build([
             'and' => [
                 [
@@ -30,6 +30,6 @@ class ArrayBuilderTest extends PHPUnit_Framework_TestCase
                 ]
             ]
         ]
-        ]);
+        ]);*/
     }
 }

@@ -12,60 +12,53 @@ use voov\Spec\Specifications\Boolean\OrSpec;
 class BooleanChainTest extends PHPUnit_Framework_TestCase
 {
 
-    protected $trueMock;
-    protected $falseMock;
+    protected $generator;
 
     public function setUp() {
-        $this->trueMock = $this->getMockBuilder('\voov\Spec\Specifications\CallableSpec')
+        $this->generator = $this->getMockBuilder('\voov\Spec\Contracts\CodeGenerator')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->trueMock->method('isSatisfiedBy')->willReturn(true);
-        $this->trueMock->method('__invoke')->willReturn(true);
-
-        $this->falseMock = $this->getMockBuilder('\voov\Spec\Specifications\CallableSpec')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->falseMock->method('isSatisfiedBy')->willReturn(false);
-        $this->falseMock->method('__invoke')->willReturn(false);
+        $this->generator->method('generate')->willReturn('1');
     }
 
     public function testAndChain()
     {
-        $and = new AndSpec($this->trueMock, $this->trueMock);
-        $this->assertTrue($and->isSatisfiedBy(null));
-        $and->add($this->falseMock);
-        $this->assertFalse($and->isSatisfiedBy(null));
+        $and = new AndSpec($this->generator, $this->generator);
+        $this->assertEquals($and->generate(), "(1 && 1)");
+        $and->add($this->generator);
+        $this->assertEquals($and->generate(), "(1 && 1 && 1)");
     }
 
     public function testOrChain()
     {
-        $or = new OrSpec($this->falseMock, $this->falseMock);
-        $this->assertFalse($or->isSatisfiedBy(null));
-        $or->add($this->trueMock);
-        $this->assertTrue($or->isSatisfiedBy(null));
+        $or = new OrSpec($this->generator, $this->generator);
+        $this->assertEquals($or->generate(), "(1 || 1)");
+        $or->add($this->generator);
+        $this->assertEquals($or->generate(), "(1 || 1 || 1)");
     }
 
     public function testNot()
     {
-        $not = new NotSpec($this->trueMock);
-        $this->assertFalse($not->isSatisfiedBy(null));
-
-        $not = new NotSpec($this->falseMock);
-        $this->assertTrue($not->isSatisfiedBy(null));
+        $not = new NotSpec($this->generator);
+        $this->assertEquals($not->generate(), "(!1)");
     }
 
     public function testAndOrChain()
     {
-        $chain = new AndSpec($this->trueMock);
-        $chain->add(new OrSpec($this->trueMock, $this->trueMock));
-        $this->assertTrue($chain->isSatisfiedBy(null));
+        $chain = new AndSpec(
+            new OrSpec(
+                $this->generator,
+                $this->generator
+            ),
+            new NotSpec($this->generator),
+            $this->generator
+        );
+        $this->assertEquals($chain->generate(), "((1 || 1) && (!1) && 1)");
     }
 
     public function testSpecBuilder()
     {
-        $spec = SpecificationBuilder::build(new AndSpec($this->trueMock))->run(null);
-        $this->assertTrue($spec);
+
     }
 }
