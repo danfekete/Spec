@@ -8,21 +8,7 @@
 namespace voov\Spec\Specifications\Boolean;
 
 
-class OrSpec extends BooleanChain
+class OrSpec extends BooleanOperatorGenerator
 {
-
-    /**
-     * Returns true if object satisfies the specification
-     * @param $spec
-     * @return boolean
-     */
-    public function isSatisfiedBy($spec)
-    {
-        foreach ($this->rules as $rule) {
-            // if any rule return true, we return true
-            if($rule($spec)) return true;
-        }
-
-        return false;
-    }
+    protected $operator = ' || ';
 }

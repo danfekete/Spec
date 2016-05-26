@@ -8,11 +8,27 @@
 namespace voov\Spec;
 
 
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use voov\Spec\Contracts\CodeGenerator;
+use voov\Spec\Contracts\SpecificationInterface;
+use voov\Spec\Exceptions\NotBooleanExpression;
 use voov\Spec\Specifications\CallableSpec;
 
-class Specification extends CallableSpec
+class Specification implements SpecificationInterface
 {
+    /**
+     * @var CodeGenerator
+     */
+    private $generator;
 
+    /**
+     * Specification constructor.
+     * @param CodeGenerator $generator
+     */
+    public function __construct(CodeGenerator $generator)
+    {
+        $this->generator = $generator;
+    }
 
 
     /**
@@ -22,16 +38,10 @@ class Specification extends CallableSpec
      */
     public function isSatisfiedBy($spec)
     {
-        return call_user_func($this->rule, $spec);
-    }
+        $lang = new ExpressionLanguage(); // TODO: add caching
+        $ret = $lang->evaluate($this->generator->generate(), $spec);
+        if (!is_bool($ret)) throw new NotBooleanExpression;
 
-    /**
-     * Run the specification
-     * @param $object
-     * @return bool
-     */
-    public function run($object)
-    {
-        return $this->isSatisfiedBy($object);
+        return $ret;
     }
 }

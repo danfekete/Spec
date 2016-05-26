@@ -16,11 +16,4 @@ interface SpecificationInterface
      * @return boolean
      */
     public function isSatisfiedBy($spec);
-
-    /**
-     * Needed for chaining
-     * @param null $spec
-     * @return mixed
-     */
-    public function __invoke($spec=null);
 }

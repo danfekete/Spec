@@ -9,48 +9,32 @@ namespace voov\Spec\Specifications;
 
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use voov\Spec\Contracts\CodeGenerator;
 use voov\Spec\Exceptions\NotBooleanExpression;
 
-class ExpressionSpec extends CallableSpec
+class ExpressionSpec implements CodeGenerator
 {
-    /**
-     * @var ExpressionLanguage
-     */
-    protected $parser;
-
-    /**
-     * @var \Symfony\Component\ExpressionLanguage\ParsedExpression
-     */
-    protected $expression;
 
     /**
      * @var string
      */
-    protected $expressionString;
+    protected $expression;
 
     /**
      * ExpressionSpec constructor.
-     * @param $expression string
+     * @param $expression
      */
-    public function __construct($expression, $names = [])
+    public function __construct($expression)
     {
-        $this->parser = new ExpressionLanguage();
-        $this->expression = $this->parser->parse($expression, $names);
-        $this->expressionString = $expression;
+        $this->expression = $expression;
     }
 
-
     /**
-     * Returns true if object satisfies the specification
-     * @param $spec
-     * @return bool
-     * @throws NotBooleanExpression
+     * Generate the expression language code
+     * @return string
      */
-    public function isSatisfiedBy($spec)
+    public function generate()
     {
-        $ret = $this->parser->evaluate($this->expression, $spec);
-        if(!is_bool($ret)) throw new NotBooleanExpression("{$this->expressionString} must be boolean expression!");
-
-        return $ret;
+        return $this->expression;
     }
 }

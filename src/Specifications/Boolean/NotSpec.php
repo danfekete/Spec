@@ -7,19 +7,32 @@
 
 namespace voov\Spec\Specifications\Boolean;
 
+use voov\Spec\Contracts\CodeGenerator;
 use voov\Spec\Specifications\CallableSpec;
 
-class NotSpec extends CallableSpec
+class NotSpec implements CodeGenerator
 {
+    /**
+     * @var CodeGenerator
+     */
+    protected $generator;
+
+    /**
+     * NotSpec constructor.
+     * @param CodeGenerator $generator
+     */
+    public function __construct(CodeGenerator $generator)
+    {
+        $this->generator = $generator;
+    }
 
 
     /**
-     * Returns true if object satisfies the specification
-     * @param $spec
-     * @return boolean
+     * Generate the expression language code
+     * @return string
      */
-    public function isSatisfiedBy($spec)
+    public function generate()
     {
-        return call_user_func($this->rule, $spec) ? false : true;
+        return sprintf('(!%s)', $this->generator->generate());
     }
 }

@@ -8,22 +8,7 @@
 namespace voov\Spec\Specifications\Boolean;
 
 
-class AndSpec extends BooleanChain
+class AndSpec extends BooleanOperatorGenerator
 {
-
-    /**
-     * Returns true if object satisfies the specification
-     * @param $spec
-     * @return boolean
-     */
-    public function isSatisfiedBy($spec)
-    {
-        foreach ($this->rules as $rule) {
-            // if either rule (spec) returns false, we return false
-            $ret = $rule($spec);
-            if(!$ret) return false;
-        }
-
-        return true;
-    }
+    protected $operator = ' && ';
 }
