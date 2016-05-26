@@ -56,9 +56,4 @@ class BooleanChainTest extends PHPUnit_Framework_TestCase
         );
         $this->assertEquals($chain->generate(), "((1 || 1) && (!1) && 1)");
     }
-
-    public function testSpecBuilder()
-    {
-
-    }
 }
