@@ -14,36 +14,55 @@ The library uses the incredible [expression-language](https://packagist.org/pack
 
 `$ composer require danfekete/spec `
 
+## Changes in 0.2
+
+The 0.2 version is a complete rewrite of the original Spec library. It now uses expression-language for every boolean logic too, and compiled only once. This way, the full business logic can be cached and run faster.
+
 ## Usage
 
 #### 1. Simple expression
 
 ```php
-$spec = new ExpressionSpec("val == 3", ['val']);
-$spec->isSatisfiedBy(['val' => 3]); // return true
-$spec->isSatisfiedBy(['val' => 2]); // return false
+$d = [2];
+$spec = new Specification(new ExpressionSpec('1 > d[0]'));
+$spec->isSatisfiedBy(['d' => $d]); // return false
 ```
 
 #### 2. Boolean chaining
 
 ```php
-$obj = new stdClass();
-$obj->value = 3;
+/*
+ * You can use classes in expression code
+*/
+class Nan {
 
-SpecificationBuilder::build(new AndSpec(
+    public function isNan($value)
+    {
+        return is_nan($value);
+    }
 
-  new ExpressionSpec('o.value == 3', ['o']),
-  new ExpressionSpec('o.value > 2', ['o']),
+}
 
-  new OrSpec(
-    new ExpressionSpec('o.value > 0', ['o']),
-    new ExpressionSpec('o.value == 0', ['o'])
-  )
+$spec = new Specification(new AndSpec(
+    new NotSpec(new ExpressionSpec('checker.isNan(d)')),
+    new OrSpec(
+        new ExpressionSpec('d != 12'),
+        new ExpressionSpec('d > 10')
+    ),
+    new AndSpec(
+        new ExpressionSpec('d > 5'),
+        new ExpressionSpec('d < 20')
+    )
+));
 
-))->run(['o' => $obj]); // return true
+$spec->isSatisfiedBy(['d' => 17, 'checker' => new Nan()]); // return true
 ```
 
+## TODO
 
+1. Cache parsed code permanently
+2. Array builder, builds specification from arrays
+3. JSON builder
 
 ## License
 
