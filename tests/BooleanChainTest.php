@@ -44,7 +44,7 @@ class BooleanChainTest extends PHPUnit_Framework_TestCase
     public function testNot()
     {
         $not = new NotSpec($this->generator);
-        $this->assertEquals($not->generate(), "(!1)");
+        $this->assertEquals($not->generate(), "!(1)");
     }
 
     public function testAndOrChain()
@@ -57,7 +57,7 @@ class BooleanChainTest extends PHPUnit_Framework_TestCase
             new NotSpec($this->generator),
             $this->generator
         );
-        $this->assertEquals($chain->generate(), "((1 || 1) && (!1) && 1)");
+        $this->assertEquals($chain->generate(), "((1 || 1) && !(1) && 1)");
     }
 
     public function testAddMany()
