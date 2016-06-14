@@ -46,8 +46,9 @@ abstract class BooleanChain implements CodeGenerator
      * @param array|CodeGenerator[] $rules
      * @return $this
      */
-    public function addMany(array $rules)
+    public function addMany($rules)
     {
+        if(!is_array($rules)) $rules = (array)$rules;
         $this->rules += $rules;
         return $this;
     }

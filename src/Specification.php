@@ -8,11 +8,11 @@
 namespace danfekete\Spec;
 
 
+use danfekete\Spec\Contracts\BuilderInterface;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use danfekete\Spec\Contracts\CodeGenerator;
 use danfekete\Spec\Contracts\SpecificationInterface;
 use danfekete\Spec\Exceptions\NotBooleanExpression;
-use danfekete\Spec\Specifications\CallableSpec;
 
 class Specification implements SpecificationInterface
 {
@@ -30,6 +30,16 @@ class Specification implements SpecificationInterface
         $this->generator = $generator;
     }
 
+    /**
+     * Creates a new spec from builder
+     * @param BuilderInterface $builder
+     * @return static
+     */
+    public static function fromBuilder(BuilderInterface $builder)
+    {
+        $o = new static($builder->build());
+        return $o;
+    }
 
     /**
      * Returns true if object satisfies the specification
@@ -39,6 +49,7 @@ class Specification implements SpecificationInterface
     public function isSatisfiedBy($spec)
     {
         $lang = new ExpressionLanguage(); // TODO: add caching
+        dump($this->generator->generate());
         $ret = $lang->evaluate($this->generator->generate(), $spec);
         if (!is_bool($ret)) throw new NotBooleanExpression;
 

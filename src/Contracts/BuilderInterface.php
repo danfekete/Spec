@@ -13,10 +13,22 @@ use danfekete\Spec\Specification;
 
 interface BuilderInterface
 {
+
+    /**
+     * Set the params for the builder
+     * @param $params
+     */
+    public function setParams($params);
+
+    /**
+     * Get params for the builder
+     * @return array
+     */
+    public function getParams();
+
     /**
      * Build a specification from params
-     * @param $params
-     * @return SpecificationInterface|SpecificationInterface[]
+     * @return CodeGenerator
      */
-    public function build($params);
+    public function build();
 }
