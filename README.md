@@ -14,10 +14,6 @@ The library uses the incredible [expression-language](https://packagist.org/pack
 
 `$ composer require danfekete/spec `
 
-## Changes in 0.2
-
-The 0.2 version is a complete rewrite of the original Spec library. It now uses expression-language for every boolean logic too, and compiled only once. This way, the full business logic can be cached and run faster.
-
 ## Usage
 
 #### 1. Simple expression
@@ -61,8 +57,8 @@ $spec->isSatisfiedBy(['d' => 17, 'checker' => new Nan()]); // return true
 ## TODO
 
 1. Cache parsed code permanently
-2. Array builder, builds specification from arrays
-3. JSON builder
+2. ~~Array builder, builds specification from arrays~~
+3. ~~JSON builder~~
 
 ## License
 
