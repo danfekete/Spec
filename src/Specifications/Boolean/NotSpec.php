@@ -33,6 +33,6 @@ class NotSpec implements CodeGenerator
      */
     public function generate()
     {
-        return sprintf('(!%s)', $this->generator->generate());
+        return sprintf('!(%s)', $this->generator->generate());
     }
 }

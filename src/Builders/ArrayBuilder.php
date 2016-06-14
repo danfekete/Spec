@@ -33,12 +33,14 @@ class ArrayBuilder implements BuilderInterface
 
     protected function parseObj($obj)
     {
+        if(!is_array($obj)) return null;
         $v = current($obj);
         $k = key($obj);
         $specs = [];
         if(is_array($v)) {
             foreach ($v as $item) {
-                $specs[] = $this->parseObj($item);
+                $ret = $this->parseObj($item);
+                if($ret) $specs[] = $ret;
             }
         }
 
@@ -52,7 +54,7 @@ class ArrayBuilder implements BuilderInterface
                 $orSpec->addMany($specs);
                 return $orSpec;
             case 'not':
-                return new NotSpec($v);
+                return new NotSpec($this->parseObj($v));
             case 'lang':
             case 'e':
             case 'exp':
@@ -61,33 +63,6 @@ class ArrayBuilder implements BuilderInterface
             default:
                 throw new UnknownSpec("Unknown spec: {$k}");
         }
-
-        
-
-        /*$specs = [];
-        foreach ($obj as $key => $param) {
-
-            switch ($key) {
-                case 'and':
-                    $andSpec = new AndSpec();
-                    $andSpec->addMany($this->parseObj($param));
-                    return $andSpec;
-                case 'or':
-                    $orSpec = new OrSpec();
-                    $orSpec->addMany($this->parseObj($param));
-                    return $orSpec;
-                case 'not':
-                    return new NotSpec($this->parseObj($param));
-                case 'lang':
-                case 'e':
-                case 'exp':
-                    $specs[] = new ExpressionSpec($param);
-                    break;
-                default:
-                    throw new UnknownSpec("Unknown spec: {$key}");
-            }
-        }
-        return $specs;*/
     }
 
     /**
