@@ -49,7 +49,6 @@ class Specification implements SpecificationInterface
     public function isSatisfiedBy($spec)
     {
         $lang = new ExpressionLanguage(); // TODO: add caching
-        dump($this->generator->generate());
         $ret = $lang->evaluate($this->generator->generate(), $spec);
         if (!is_bool($ret)) throw new NotBooleanExpression;
 
